@@ -1,0 +1,14 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# BMAD personal config (regenerated per developer)
+_bmad/config.user.toml
+_bmad/custom/config.user.toml
+
+# Environment
+.env
+.env.*
+
+# Dependencies
+node_modules/
