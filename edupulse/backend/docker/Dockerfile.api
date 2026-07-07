@@ -1,0 +1,20 @@
+FROM node:22-alpine AS base
+WORKDIR /app
+
+FROM base AS deps
+COPY api/package.json ./api/
+RUN cd api && npm install
+
+FROM deps AS build
+COPY api ./api
+COPY prisma ./prisma
+RUN cd api && npx prisma generate --schema=../prisma/schema.prisma && npm run build
+
+FROM node:22-alpine AS runner
+WORKDIR /app
+ENV NODE_ENV=production
+COPY --from=build /app/api/dist ./dist
+COPY --from=build /app/api/node_modules ./node_modules
+COPY --from=build /app/api/package.json ./package.json
+EXPOSE 3000
+CMD ["node", "dist/main.js"]

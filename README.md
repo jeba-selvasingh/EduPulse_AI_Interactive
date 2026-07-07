@@ -5,6 +5,8 @@ AI-powered education platform prototype with BMAD Method workflows for structure
 ## Contents
 
 - `EduPulse_AI_Interactive_Prototype.html` — interactive UI prototype
+- `edupulse/frontend/` — **standalone** Expo React Native app
+- `edupulse/backend/` — **standalone** NestJS API + worker + Docker
 - `_bmad/` — BMAD Method agents, workflows, and configuration
 - `.agents/skills/` — Cursor skills for BMAD workflows
 - `_bmad-output/` — planning and implementation artifacts
@@ -12,6 +14,20 @@ AI-powered education platform prototype with BMAD Method workflows for structure
 
 ## Getting Started
 
-Open `EduPulse_AI_Interactive_Prototype.html` in a browser to explore the prototype.
+### Prototype
 
-For AI-assisted development with BMAD, open this folder in Cursor and invoke the `bmad-help` skill.
+Open `EduPulse_AI_Interactive_Prototype.html` in a browser.
+
+### Platform (separate frontend & backend)
+
+```bash
+# Backend
+cd edupulse/backend && cp .env.example .env
+cd api && npm install && npm run dev
+
+# Frontend (separate terminal)
+cd edupulse/frontend && cp .env.example .env
+npm install && npm start
+```
+
+See [edupulse/README.md](edupulse/README.md).

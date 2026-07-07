@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "name": "EduPulse AI",
+    "slug": "edupulse",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "scheme": "edupulse",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "ai.edupulse.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#534AB7"
+      },
+      "package": "ai.edupulse.app"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-dev-client",
+      "expo-web-browser",
+      "expo-secure-store"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
