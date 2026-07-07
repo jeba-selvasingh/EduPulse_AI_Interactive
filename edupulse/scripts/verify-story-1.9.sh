@@ -97,10 +97,12 @@ else
 fi
 
 # Policy version bump forces re-accept
-curl -s -X PUT "$API/api/consent/policy" \
+curl -s -X POST "$API/api/consent/accept" -H "Authorization: Bearer $AT" >/dev/null
+POLICY_CODE=$(curl -s -o /tmp/st19-policy-put.json -w "%{http_code}" -X PUT "$API/api/consent/policy" \
   -H "Authorization: Bearer $AT" \
   -H "Content-Type: application/json" \
-  -d '{"version":"1.1.0"}' >/dev/null
+  -d '{"version":"1.1.0"}')
+if [ "$POLICY_CODE" = "200" ]; then ok "admin can bump policy version"; else fail "policy PUT failed (HTTP $POLICY_CODE)"; fi
 
 STATUS3=$(curl -s "$API/api/consent/status" -H "Authorization: Bearer $FT")
 if echo "$STATUS3" | python3 -c "import sys,json; d=json.load(sys.stdin).get('data',{}); exit(0 if d.get('required') is True and d.get('currentVersion')=='1.1.0' else 1)" 2>/dev/null; then

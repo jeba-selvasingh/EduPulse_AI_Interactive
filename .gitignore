@@ -21,3 +21,7 @@ edupulse/backend/worker/node_modules/
 edupulse/**/dist/
 edupulse/frontend/.expo/
 edupulse/backend/docker/nginx/certs/*.pem
+
+# Playwright E2E artifacts
+edupulse/e2e/test-results/
+edupulse/e2e/playwright-report/

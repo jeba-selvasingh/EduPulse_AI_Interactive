@@ -42,7 +42,7 @@ export class ConsentController {
   }
 
   @Put('policy')
-  @UseGuards(RbacGuard)
+  @UseGuards(JwtAuthGuard, RbacGuard)
   @RequirePermissions(Permission.ConsentManage)
   updatePolicy(@Body() body: unknown) {
     const parsed = updateConsentPolicySchema.parse(body);

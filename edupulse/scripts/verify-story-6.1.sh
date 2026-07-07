@@ -61,13 +61,13 @@ accept_consent "$ST"
 accept_consent "$FT"
 
 PRE=$(curl -s "$API/api/diagnosis/academic-level" -H "Authorization: Bearer $ST")
-if echo "$PRE" | python3 -c "
-import json
-d = json.load(open('/dev/stdin'))['data']
+if printf '%s' "$PRE" | python3 -c "
+import json, sys
+d = json.load(sys.stdin)['data']
 codes = {s['courseCode'] for s in d['subjects']}
 assert 'BCS303' in codes
 assert 'BCS304' not in codes
-" 2>/dev/null <<< "$PRE"; then
+" 2>/dev/null; then
   ok "BCS304 hidden until marks published"
 else
   fail "unpublished BCS304 guard"
